@@ -55,3 +55,11 @@ token 表是生成出来的：修改 `palette/dracula.json` 里的锚点（颜�
 ## 许可
 
 MIT —— 见 [LICENSE](LICENSE)。结构参考 [dsh-catppuccin](https://github.com/zhijun-dai/Catppuccin-dsh-theme)（MIT）。
+
+## 开发工作流
+
+1. 修改 `palette/dracula.json` 里的锚点——颜色、官方 canvas/brand/代码映射、`grayRamp`、`soft.background`。
+2. `npm run generate` —— 重新生成 `themes/*.json` 与 `lib/client.js`（浏览器 bundle）。
+3. 校验：`node scripts/check-themes.mjs`（token 结构检查）——CI 会跑同样的检查，外加生成产物 diff。
+4. 在真实 profile 里测试：`dsh plugin --profile web add /path/to/this/repo`（本地 link），重启 profile，在**设置 → 通用 → 德古拉主题**里选择皮肤。
+5. 发版：`package.json` 升 `version`，提交推送，`pnpm publish`，再把 profile 更新到已发布版本（`dsh plugin --profile web add dsh-dracula-theme`）并重启应用。profile 从 npm 安装，不走工作区——本地改动只有发布后（或通过本地 link）才会生效。

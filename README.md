@@ -56,3 +56,11 @@ The token tables are generated: edit the anchors in `palette/dracula.json` (colo
 ## License
 
 MIT — see [LICENSE](LICENSE). Structure modeled on [dsh-catppuccin](https://github.com/zhijun-dai/Catppuccin-dsh-theme) (MIT); token mapping adopted from the official [Dracula DeepSeek port](https://github.com/dracula/deepseek) (MIT).
+
+## Development workflow
+
+1. Edit the anchors in `palette/dracula.json` — colors, the official canvas/brand/code mappings, `grayRamp`, `soft.background`.
+2. `npm run generate` — rebuilds `themes/*.json` and `lib/client.js` (the browser bundle).
+3. Validate: `node scripts/check-themes.mjs` (structural token check) — CI runs the same check plus a generated-artifacts diff.
+4. Test in a live profile: `dsh plugin --profile web add /path/to/this/repo` (local link), restart the profile, pick a skin in **Settings → General → Dracula theme**.
+5. Release: bump `version` in `package.json`, commit, push, `pnpm publish`, then update the profile to the published version (`dsh plugin --profile web add dsh-dracula-theme`) and restart the app. The profile installs from npm, not from the working tree — local edits only take effect after publishing or via a local link.
