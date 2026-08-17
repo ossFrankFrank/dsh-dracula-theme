@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "description": "🧛 Dracula theme for DeepSeek Harness: the classic dark palette (plus the Soft variant) registered into the built-in theme runtime",
   "license": "MIT",
-  "author": "your-name",
+  "author": "ossFrankFrank",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-name/dsh-dracula.git"
+    "url": "git+https://github.com/ossFrankFrank/dsh-dracula-theme.git"
   },
   "keywords": [
     "deepseek-harness",
