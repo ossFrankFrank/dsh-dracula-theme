@@ -1,0 +1,42 @@
+{
+  "name": "Dracula",
+  "homepage": "https://draculatheme.com",
+  "description": "Official Dracula palette anchors plus the derived grayscale ramp used by scripts/gen-themes.mjs to build the DSH token tables. Edit anchors here, then run `npm run generate`.",
+  "colors": {
+    "background": "#282a36",
+    "currentLine": "#44475a",
+    "selection": "#44475a",
+    "foreground": "#f8f8f2",
+    "comment": "#6272a4",
+    "black": "#21222c",
+    "deeper": "#191a21",
+    "cyan": "#8be9fd",
+    "green": "#50fa7b",
+    "orange": "#ffb86c",
+    "pink": "#ff79c6",
+    "purple": "#bd93f9",
+    "red": "#ff5555",
+    "yellow": "#f1fa8c"
+  },
+  "soft": {
+    "description": "Dracula Soft: a slightly lighter, gentler background variant (official soft background #343746).",
+    "background": "#343746"
+  },
+  "grayRamp": {
+    "description": "Anchor stops of the neutral grayscale ramp, lightest (00) to darkest (1000). Steps between anchors are interpolated linearly in sRGB.",
+    "00": "#f8f8f2",
+    "50": "#efefe9",
+    "100": "#e2e2da",
+    "200": "#cdcdc5",
+    "300": "#b6b6ae",
+    "400": "#8f8f96",
+    "500": "#6d6d7a",
+    "550": "#5c5c6b",
+    "600": "#4d4d5e",
+    "700": "#3e3e50",
+    "800": "#30303f",
+    "850": "#282a36",
+    "900": "#20212b",
+    "1000": "#191a21"
+  }
+}
