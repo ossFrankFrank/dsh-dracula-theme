@@ -12,7 +12,7 @@
 
 ## 预览
 
-![德古拉主题应用在 DSH Web GUI 上的效果](assets/preview.webp)
+![德古拉主题应用在 DSH Web GUI 上的效果](assets/preview.png)
 
 经典德古拉画布（`#282a36`）映射到 DSH 全部界面层 —— 侧边栏、会话、代码块，品牌点缀色取自官方 Dracula DeepSeek 移植版的紫/青配色。
 

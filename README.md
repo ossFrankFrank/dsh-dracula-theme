@@ -12,7 +12,7 @@
 
 ## Preview
 
-![Dracula skin applied to the DSH Web GUI](assets/preview.webp)
+![Dracula skin applied to the DSH Web GUI](assets/preview.png)
 
 The classic Dracula canvas (`#282a36`) mapped onto the full DSH surface stack — sidebar, conversations, code blocks — with the purple/cyan brand accents from the official Dracula DeepSeek port.
 
