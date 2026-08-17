@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  generate-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Regenerate token tables and browser bundle
+        run: node scripts/gen-themes.mjs
+      - name: Verify generated artifacts are committed
+        run: |
+          git diff --exit-code -- themes/ lib/ || {
+            echo "::error::Generated files (themes/*.json, lib/client.js) are out of sync with palette/dracula.json. Run 'npm run generate' and commit the changes."
+            exit 1
+          }

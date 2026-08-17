@@ -10,6 +10,12 @@
 - 完整的 token 覆盖：中性色阶、画布色阶、品牌色（紫）、蓝色（青）、红/绿/琥珀状态色、别名表面、组件专属 token（侧边栏、气泡、输入框、菜单）以及官方德古拉语法配色（`--shiki-*` 代码高亮）。
 - 从**设置 → 通用 → 德古拉主题**一键切换，选择持久保存。
 
+## 预览
+
+![德古拉主题应用在 DSH Web GUI 上的效果](assets/preview.webp)
+
+经典德古拉画布（`#282a36`）映射到 DSH 全部界面层 —— 侧边栏、会话、代码块，品牌点缀色取自官方 Dracula DeepSeek 移植版的紫/青配色。
+
 ## 色板
 
 | 角色 | 颜色 |
@@ -33,7 +39,7 @@
 dsh plugin --profile web add dsh-dracula-theme
 
 # 或从源码
-dsh plugin --profile web add https://github.com/<you>/dsh-dracula-theme
+dsh plugin --profile web add https://github.com/ossFrankFrank/dsh-dracula-theme
 ```
 
 重启 profile 后，在**设置 → 通用 → 德古拉主题**里选择皮肤。

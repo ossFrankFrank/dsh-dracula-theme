@@ -10,6 +10,12 @@
 - Core logic adopted from the **official [Dracula DeepSeek port](https://github.com/dracula/deepseek)** (MIT): the canvas/brand `--dsw-static-*` overrides and code-highlight palette are taken verbatim and translated into the DSH theme runtime. On top of that, full token coverage: neutral & canvas ramps, brand (purple), blue (cyan), red / green / amber state colors, alias surfaces, component-specific tokens (sidebar, bubbles, composer, menus) and the official Dracula syntax colors for code highlighting (`--shiki-*`).
 - One-click switching from **Settings → General → Dracula theme**, persisted across sessions.
 
+## Preview
+
+![Dracula skin applied to the DSH Web GUI](assets/preview.webp)
+
+The classic Dracula canvas (`#282a36`) mapped onto the full DSH surface stack — sidebar, conversations, code blocks — with the purple/cyan brand accents from the official Dracula DeepSeek port.
+
 ## Palette
 
 | Role | Color |
@@ -34,7 +40,7 @@
 dsh plugin --profile web add dsh-dracula-theme
 
 # or from source
-dsh plugin --profile web add https://github.com/<you>/dsh-dracula-theme
+dsh plugin --profile web add https://github.com/ossFrankFrank/dsh-dracula-theme
 ```
 
 Restart the profile, then pick the skin in **Settings → General → Dracula theme**.
