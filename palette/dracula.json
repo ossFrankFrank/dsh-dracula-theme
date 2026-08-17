@@ -2,6 +2,13 @@
   "name": "Dracula",
   "homepage": "https://draculatheme.com",
   "description": "Palette anchors for dsh-dracula-theme. Colors and the canvas/brand token mappings are adopted from the official Dracula DeepSeek port (github.com/dracula/deepseek, MIT) — the same --dsw-static-* token vocabulary the DSH Web theme runtime uses. Edit anchors here, then run `npm run generate`.",
+  "notes": {
+    "canvasRamp": "--dsw-static-neutral-bluish-* overrides from the official port, verbatim. Semantic comments from the source: 950 base bg, 900 sidebar fill, 875 layer-1, 850 layer-2 + code block bg, 800 layer-3/cards/overlays, 750 tooltips/selector, 700 borders & muted, 600 captions, 300 secondary labels, 400 tertiary labels, 50 primary text.",
+    "brandRamp": "--dsw-static-deepseek-* overrides from the official port. 400 link / brand-text → cyan, 450 brand-primary → purple, 500 hover.",
+    "codeTokens": "The official Prism token mapping, translated to the DSH shiki vocabulary: comments #6272a4, punctuation #f8f8f2, tags/parameters/this → cyan, numbers/constants/strings/inserted → yellow, keywords/operators/builtins/regex → pink, functions → green, deleted/important → red.",
+    "grayRamp": "Anchor stops of the neutral grayscale ramp (--dsw-static-neutral-*), lightest (00) to darkest (1000). The official port does not override this ramp; values are Dracula-gray interpolations for a self-contained theme.",
+    "soft": "Dracula Soft: a slightly lighter, gentler background variant (official soft background #343746)."
+  },
   "colors": {
     "background": "#282a36",
     "darkBackground": "#20212b",
@@ -20,14 +27,12 @@
     "yellow": "#f1fa8c"
   },
   "soft": {
-    "description": "Dracula Soft: a slightly lighter, gentler background variant (official soft background #343746).",
     "background": "#343746"
   },
   "official": {
     "source": "https://github.com/dracula/deepseek/blob/main/deepseek-dracula.css",
     "license": "MIT",
     "canvasRamp": {
-      "description": "--dsw-static-neutral-bluish-* overrides from the official port, verbatim. Semantic comments from the source: 950 base bg, 900 sidebar fill, 875 layer-1, 850 layer-2 + code block bg, 800 layer-3/cards/overlays, 750 tooltips/selector, 700 borders & muted, 600 captions, 300 secondary labels, 400 tertiary labels, 50 primary text.",
       "00": "#f8f8f2",
       "50": "#f8f8f2",
       "60": "#282a36",
@@ -48,7 +53,6 @@
       "950": "#20212b"
     },
     "brandRamp": {
-      "description": "--dsw-static-deepseek-* overrides from the official port. 400 link / brand-text → cyan, 450 brand-primary → purple, 500 hover.",
       "50": "#f0eaff",
       "100": "#e0d2fe",
       "200": "#c8aafd",
@@ -66,7 +70,6 @@
       "scroll-color-hover": "rgba(189, 147, 249, 0.6)"
     },
     "codeTokens": {
-      "description": "The official Prism token mapping, translated to the DSH shiki vocabulary: comments #6272a4, punctuation #f8f8f2, tags/parameters/this → cyan, numbers/constants/strings/inserted → yellow, keywords/operators/builtins/regex → pink, functions → green, deleted/important → red.",
       "foreground": "#f8f8f2",
       "background": "#282a36",
       "token-comment": "#6272a4",
@@ -84,7 +87,6 @@
     }
   },
   "grayRamp": {
-    "description": "Anchor stops of the neutral grayscale ramp (--dsw-static-neutral-*), lightest (00) to darkest (1000). The official port does not override this ramp; values are Dracula-gray interpolations for a self-contained theme.",
     "00": "#f8f8f2",
     "50": "#efefe9",
     "100": "#e2e2da",

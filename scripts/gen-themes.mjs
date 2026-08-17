@@ -38,18 +38,25 @@ const step = (a, b, t) => mix(a, b, t);
 /**
  * Piecewise-linear ramp: given anchor stops {position: "#hex"} sorted by
  * position, return the color at `at` (clamped to the anchor range).
+ * Positions are normalized to numbers (a "00" key must not be looked up as
+ * the number 0 — the object key stays "00"), and non-numeric keys
+ * (documentation notes etc.) are ignored.
  */
 function rampAt(anchors, at) {
-  const positions = Object.keys(anchors).map(Number).sort((a, b) => a - b);
-  if (at <= positions[0]) return anchors[positions[0]];
-  for (let i = 1; i < positions.length; i++) {
-    if (at <= positions[i]) {
-      const lo = positions[i - 1];
-      const hi = positions[i];
-      return step(anchors[lo], anchors[hi], (at - lo) / (hi - lo));
+  const stops = Object.entries(anchors)
+    .map(([key, value]) => [Number(key), value])
+    .filter(([position, value]) => Number.isFinite(position) && typeof value === "string")
+    .sort((a, b) => a[0] - b[0]);
+  if (stops.length === 0) throw new TypeError("rampAt: no numeric anchor positions");
+  if (at <= stops[0][0]) return stops[0][1];
+  for (let i = 1; i < stops.length; i++) {
+    if (at <= stops[i][0]) {
+      const lo = stops[i - 1];
+      const hi = stops[i];
+      return step(lo[1], hi[1], (at - lo[0]) / (hi[0] - lo[0]));
     }
   }
-  return anchors[positions[positions.length - 1]];
+  return stops[stops.length - 1][1];
 }
 
 /** The full canvas (bluish) ramp: official anchors + interpolated gaps. */
@@ -57,8 +64,9 @@ const canvasPositions = ["00", "50", "60", "75", "100", "150", "200", "250", "30
 const canvas = Object.fromEntries(canvasPositions.map((p) => [p, rampAt(OFF.canvasRamp, Number(p))]));
 canvas["1000"] = mix(canvas["950"], "#14151c", 0.5);
 
-/** The neutral (text/border) grayscale ramp. */
-const neutralRamp = palette.grayRamp;
+/** The neutral (text/border) grayscale ramp — palette anchors plus interpolated gaps. */
+const neutralPositions = ["00", "50", "100", "150", "200", "250", "300", "400", "500", "550", "600", "700", "800", "850", "900", "1000"];
+const neutralRamp = Object.fromEntries(neutralPositions.map((p) => [p, rampAt(palette.grayRamp, Number(p))]));
 
 /** Brand ramp — official deepseek values, verbatim. */
 const deepseek = { ...OFF.brandRamp };
