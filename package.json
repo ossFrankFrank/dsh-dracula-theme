@@ -1,6 +1,6 @@
 {
   "name": "dsh-dracula-theme",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "🧛 Dracula theme for DeepSeek Harness: the classic dark palette (plus the Soft variant) registered into the built-in theme runtime",
   "license": "MIT",
   "author": "ossFrankFrank",
