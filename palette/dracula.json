@@ -1,9 +1,10 @@
 {
   "name": "Dracula",
   "homepage": "https://draculatheme.com",
-  "description": "Official Dracula palette anchors plus the derived grayscale ramp used by scripts/gen-themes.mjs to build the DSH token tables. Edit anchors here, then run `npm run generate`.",
+  "description": "Palette anchors for dsh-dracula-theme. Colors and the canvas/brand token mappings are adopted from the official Dracula DeepSeek port (github.com/dracula/deepseek, MIT) — the same --dsw-static-* token vocabulary the DSH Web theme runtime uses. Edit anchors here, then run `npm run generate`.",
   "colors": {
     "background": "#282a36",
+    "darkBackground": "#20212b",
     "currentLine": "#44475a",
     "selection": "#44475a",
     "foreground": "#f8f8f2",
@@ -22,8 +23,68 @@
     "description": "Dracula Soft: a slightly lighter, gentler background variant (official soft background #343746).",
     "background": "#343746"
   },
+  "official": {
+    "source": "https://github.com/dracula/deepseek/blob/main/deepseek-dracula.css",
+    "license": "MIT",
+    "canvasRamp": {
+      "description": "--dsw-static-neutral-bluish-* overrides from the official port, verbatim. Semantic comments from the source: 950 base bg, 900 sidebar fill, 875 layer-1, 850 layer-2 + code block bg, 800 layer-3/cards/overlays, 750 tooltips/selector, 700 borders & muted, 600 captions, 300 secondary labels, 400 tertiary labels, 50 primary text.",
+      "00": "#f8f8f2",
+      "50": "#f8f8f2",
+      "60": "#282a36",
+      "75": "#eef0f8",
+      "100": "#e8eaf4",
+      "150": "#d8ddef",
+      "200": "#ccd2e8",
+      "300": "#bbc4de",
+      "400": "#9ba9d0",
+      "500": "#7b8fc4",
+      "600": "#6272a4",
+      "700": "#6272a4",
+      "750": "#44475a",
+      "800": "#44475a",
+      "850": "#2e3040",
+      "875": "#282a36",
+      "900": "#282a36",
+      "950": "#20212b"
+    },
+    "brandRamp": {
+      "description": "--dsw-static-deepseek-* overrides from the official port. 400 link / brand-text → cyan, 450 brand-primary → purple, 500 hover.",
+      "50": "#f0eaff",
+      "100": "#e0d2fe",
+      "200": "#c8aafd",
+      "300": "#b088fc",
+      "400": "#8be9fd",
+      "450": "#bd93f9",
+      "500": "#a97dfa",
+      "600": "#7a5abf",
+      "700-delete": "#5a3e99",
+      "800": "#44475a",
+      "900": "#383a4a"
+    },
+    "scrollbar": {
+      "scroll-color": "rgba(98, 114, 164, 0.4)",
+      "scroll-color-hover": "rgba(189, 147, 249, 0.6)"
+    },
+    "codeTokens": {
+      "description": "The official Prism token mapping, translated to the DSH shiki vocabulary: comments #6272a4, punctuation #f8f8f2, tags/parameters/this → cyan, numbers/constants/strings/inserted → yellow, keywords/operators/builtins/regex → pink, functions → green, deleted/important → red.",
+      "foreground": "#f8f8f2",
+      "background": "#282a36",
+      "token-comment": "#6272a4",
+      "token-punctuation": "#f8f8f2",
+      "token-constant": "#f1fa8c",
+      "token-string": "#f1fa8c",
+      "token-string-expression": "#f1fa8c",
+      "token-inserted": "#f1fa8c",
+      "token-link": "#f1fa8c",
+      "token-keyword": "#ff79c6",
+      "token-parameter": "#8be9fd",
+      "token-function": "#50fa7b",
+      "token-deleted": "#ff5555",
+      "token-changed": "#ffb86c"
+    }
+  },
   "grayRamp": {
-    "description": "Anchor stops of the neutral grayscale ramp, lightest (00) to darkest (1000). Steps between anchors are interpolated linearly in sRGB.",
+    "description": "Anchor stops of the neutral grayscale ramp (--dsw-static-neutral-*), lightest (00) to darkest (1000). The official port does not override this ramp; values are Dracula-gray interpolations for a self-contained theme.",
     "00": "#f8f8f2",
     "50": "#efefe9",
     "100": "#e2e2da",

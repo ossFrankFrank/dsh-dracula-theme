@@ -7,7 +7,7 @@
 - **Two faithful variants** built from the official [Dracula palette](https://draculatheme.com):
   - `Dracula` — the classic `#282a36` canvas
   - `Dracula Soft` — the gentler `#343746` background
-- Full token coverage: neutral & canvas ramps, brand (purple), blue (cyan), red / green / amber state colors, alias surfaces, component-specific tokens (sidebar, bubbles, composer, menus) and the official Dracula syntax colors for code highlighting (`--shiki-*`).
+- Core logic adopted from the **official [Dracula DeepSeek port](https://github.com/dracula/deepseek)** (MIT): the canvas/brand `--dsw-static-*` overrides and code-highlight palette are taken verbatim and translated into the DSH theme runtime. On top of that, full token coverage: neutral & canvas ramps, brand (purple), blue (cyan), red / green / amber state colors, alias surfaces, component-specific tokens (sidebar, bubbles, composer, menus) and the official Dracula syntax colors for code highlighting (`--shiki-*`).
 - One-click switching from **Settings → General → Dracula theme**, persisted across sessions.
 
 ## Palette
@@ -15,6 +15,7 @@
 | Role | Color |
 | --- | --- |
 | Background | `#282a36` |
+| Dark background (base canvas) | `#20212b` |
 | Current line / selection | `#44475a` |
 | Foreground | `#f8f8f2` |
 | Comment | `#6272a4` |
@@ -44,8 +45,8 @@ Restart the profile, then pick the skin in **Settings → General → Dracula th
 npm run generate   # rebuild themes/*.json and lib/client.js from palette/dracula.json
 ```
 
-The token tables are generated: edit the anchors in `palette/dracula.json` (colors, `grayRamp`, `soft.background`) and regenerate. `lib/client.js` is the browser bundle consumed by the DSH client runtime; `lib/index.js` is a no-op host entry.
+The token tables are generated: edit the anchors in `palette/dracula.json` (colors, the official `canvasRamp`/`brandRamp`/`codeTokens` mappings, `grayRamp`, `soft.background`) and regenerate. `lib/client.js` is the browser bundle consumed by the DSH client runtime; `lib/index.js` is a no-op host entry.
 
 ## License
 
-MIT — see [LICENSE](LICENSE). Structure modeled on [dsh-catppuccin](https://github.com/zhijun-dai/Catppuccin-dsh-theme) (MIT).
+MIT — see [LICENSE](LICENSE). Structure modeled on [dsh-catppuccin](https://github.com/zhijun-dai/Catppuccin-dsh-theme) (MIT); token mapping adopted from the official [Dracula DeepSeek port](https://github.com/dracula/deepseek) (MIT).
