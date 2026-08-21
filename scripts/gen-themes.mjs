@@ -96,6 +96,16 @@ const CANVAS = {
   primary: canvas["50"]       // primary text
 };
 
+/** Official spec surface guidance (draculatheme.com/spec): floating interactive
+ * elements #343746, lighter #424450, and the opaque current-line fallback
+ * #353747 (the spec's current-line highlight is #6272A4 translucent; editors
+ * without alpha use #353747). Selection stays #44475A. */
+const SPEC_UI = {
+	floating: "#343746",
+	floatingLighter: "#424450",
+	currentLineFallback: "#353747"
+};
+
 /** Alias layer — the surfaces the UI actually consumes, derived from the official mapping. */
 const aliases = {
   "bg-base": CANVAS.base,
@@ -103,7 +113,7 @@ const aliases = {
   "bg-layer-2": CANVAS.layer2,
   "bg-layer-3": CANVAS.layer3,
   "bg-module-platform": CANVAS.layer3,
-  "bg-overlay": CANVAS.tooltip,
+  "bg-overlay": SPEC_UI.floating,
   "bg-multi-select": CANVAS.tooltip,
   "bg-skeleton": "rgba(248, 248, 242, 0.05)",
   "bg-mask-1": "rgba(0, 0, 0, 0.45)",
@@ -124,11 +134,11 @@ const aliases = {
   "brand-text": C.cyan,
   "button-contrast-fill": C.background,
   "button-elevated-fill": CANVAS.layer2,
-  "button-floating-fill": CANVAS.tooltip,
-  "button-floating-hover": CANVAS.overlay,
+  "button-floating-fill": SPEC_UI.floating,
+  "button-floating-hover": SPEC_UI.floatingLighter,
   "button-ghost-active-border": C.comment,
   "button-ghost-active-fill": CANVAS.layer2,
-  "button-ghost-active-hover": CANVAS.tooltip,
+  "button-ghost-active-hover": SPEC_UI.currentLineFallback,
   "button-info-fill": C.purple,
   "button-info-hover": OFF.brandRamp["700-delete"],
   "button-primary-dimmed": OFF.brandRamp["600"],
@@ -141,7 +151,7 @@ const aliases = {
   "interactive-bg-hover": "rgba(248, 248, 242, 0.08)",
   "interactive-bg-hover-accent": "rgba(189, 147, 249, 0.16)",
   "interactive-bg-hover-danger": "rgba(255, 85, 85, 0.14)",
-  "interactive-bg-hover-solid": C.currentLine,
+  "interactive-bg-hover-solid": SPEC_UI.currentLineFallback,
   "label-caption": CANVAS.caption,
   "label-dimmed": canvas["500"],
   "label-primary": CANVAS.primary,
@@ -176,17 +186,17 @@ const aliases = {
   "state-warn-secondary": "rgba(255, 184, 108, 0.16)",
   "state-warn-tertiary": "rgba(255, 184, 108, 0.1)",
   "toast-bg": CANVAS.layer2,
-  "tooltip-bg": CANVAS.tooltip
+  "tooltip-bg": SPEC_UI.floating
 };
 
 /** Component-specific surfaces (sidebar, bubbles, composer…), per official semantics. */
 const specifics = {
   "sidebar-fill": CANVAS.sidebar,
-  "sidebar-nav-item-active": CANVAS.tooltip,
+  "sidebar-nav-item-active": SPEC_UI.currentLineFallback,
   "sidebar-nav-item-active-accent": "rgba(189, 147, 249, 0.25)",
   "sidebar-nav-item-hover": CANVAS.layer2,
   "bubble": CANVAS.layer2,
-  "bubble-highlight": CANVAS.tooltip,
+  "bubble-highlight": SPEC_UI.currentLineFallback,
   "input-major": CANVAS.sidebar,
   "login-input": CANVAS.sidebar,
   "menu": CANVAS.layer2,
@@ -238,14 +248,10 @@ const SOFT_ALIAS_POSITIONS = {
   "bg-layer-2": 850,
   "bg-layer-3": 800,
   "bg-module-platform": 800,
-  "bg-overlay": 750,
   "bg-multi-select": 750,
   "button-elevated-fill": 850,
-  "button-floating-fill": 750,
-  "button-floating-hover": 700,
   "button-ghost-active-fill": 850,
   "button-ghost-active-hover": 750,
-  "interactive-bg-hover-solid": 700,
   "markdown-citation": 750,
   "markdown-code-block": 850,
   "markdown-code-block-banner": 875,
@@ -262,17 +268,27 @@ const SOFT_ALIAS_POSITIONS = {
 const softAliasOverrides = Object.fromEntries(
   Object.entries(SOFT_ALIAS_POSITIONS).map(([key, position]) => [`--dsw-alias-${key}`, softCanvas[position]])
 );
+/** Soft variants of the spec surfaces: blend toward the soft current line. */
+const softSpecSurfaces = {
+  "--dsw-alias-bg-overlay": mix(SPEC_UI.floating, C.currentLine, 0.3),
+  "--dsw-alias-button-floating-fill": mix(SPEC_UI.floating, C.currentLine, 0.3),
+  "--dsw-alias-button-floating-hover": mix(SPEC_UI.floatingLighter, C.currentLine, 0.3),
+  "--dsw-alias-interactive-bg-hover-solid": mix(SPEC_UI.currentLineFallback, C.currentLine, 0.3),
+  "--dsw-alias-tooltip-bg": mix(SPEC_UI.floating, C.currentLine, 0.3),
+  "--dsw-specific-sidebar-nav-item-active": mix(SPEC_UI.currentLineFallback, C.currentLine, 0.3),
+  "--dsw-specific-bubble-highlight": mix(SPEC_UI.currentLineFallback, C.currentLine, 0.3)
+};
 
 const dracula = buildTheme("dracula", "Dracula", "dark");
 const soft = buildTheme("dracula-soft", "Dracula Soft", "dark", {
   ...softAliasOverrides,
+  ...softSpecSurfaces,
   "--dsw-specific-sidebar-fill": softCanvas[900],
   "--dsw-specific-input-major": softCanvas[900],
   "--dsw-specific-login-input": softCanvas[900],
   "--dsw-specific-menu": softCanvas[850],
   "--dsw-specific-tip": softCanvas[850],
   "--dsw-specific-bubble": softCanvas[850],
-  "--dsw-specific-bubble-highlight": softCanvas[750],
   "--dsw-specific-selector": softCanvas[750],
   "--dsw-specific-sidebar-nav-item-hover": softCanvas[850],
   "--dsw-static-neutral-bluish-850": palette.soft.background,
