@@ -33,6 +33,25 @@ The classic Dracula canvas (`#282a36`) mapped onto the full DSH surface stack â€
 | Orange (warn) | `#ffb86c` |
 | Red (error) | `#ff5555` |
 
+## Official spec alignment
+
+The token mappings follow the official [Dracula Syntax Highlighting Specification](https://draculatheme.com/spec) and the classic [dracula/sublime](https://github.com/dracula/sublime) convention:
+
+| Role | Color |
+| --- | --- |
+| Keywords & storage | Pink `#FF79C6` |
+| Functions & methods | Green `#50FA7B` |
+| Classes & types | Cyan `#8BE9FD` |
+| Strings & text | Yellow `#F1FA8C` |
+| Numbers & constants | Orange `#FFB86C` |
+| Comments | `#6272A4` |
+| Variables & parameters | Foreground `#F8F8F2` |
+| Punctuation | Foreground `#F8F8F2` |
+| Diff inserted / deleted | Green `#50FA7B` / Red `#FF5555` |
+| Links | Cyan `#8BE9FD` |
+
+UI surfaces follow the spec's current-line / selection distinction: text selection is `#44475A` (including the `::selection` rule), the current-line highlight uses the opaque fallback `#353747`, and floating interactive elements use `#343746` / `#424450`. Status colors (error/success/warning) deliberately follow the syntax palette like the official Dracula DeepSeek port, keeping the whole UI on one consistent palette.
+
 ## Installation
 
 ```sh
